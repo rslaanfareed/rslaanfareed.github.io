@@ -10,33 +10,33 @@
     :root {
       --bg: #07070f; --bg2: #0e0e1a; --bg3: #13131f;
       --cyan: #00e5ff; --cyan2: #00b8d4; --purple: #8b5cf6;
-      --gold: #fbbf24; --text: #e2e8f0; --muted: #64748b;
+      --text: #e2e8f0; --muted: #64748b;
       --border: rgba(0,229,255,0.12); --card: rgba(14,14,26,0.8);
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; cursor: none; }
-
-    .cursor { width: 10px; height: 10px; background: var(--cyan); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); mix-blend-mode: screen; }
-    .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--cyan); border-radius: 50%; position: fixed; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.5; transition: all 0.15s ease; }
+    body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
     #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.35; }
 
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(7,7,15,0.7); border-bottom: 1px solid var(--border); transition: background 0.3s; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 10px 60px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(7,7,15,0.7); border-bottom: 1px solid var(--border); transition: background 0.3s; }
     .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 3px; color: var(--cyan); text-decoration: none; }
+    .nav-right { display: flex; align-items: center; gap: 36px; }
     .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--cyan); transition: width 0.3s; }
     .nav-links a:hover { color: var(--cyan); }
     .nav-links a:hover::after { width: 100%; }
+    .nav-left { display: flex; align-items: center; gap: 16px; }
+    .nav-avatar { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--cyan); box-shadow: 0 0 16px rgba(0,229,255,0.35); flex-shrink: 0; }
 
     section { position: relative; z-index: 1; }
 
-    #hero { min-height: 100vh; display: flex; align-items: center; padding: 0 60px; overflow: hidden; }
+    #hero { min-height: 100vh; display: flex; align-items: center; padding: 160px 60px 60px; overflow: hidden; }
     .hero-content { max-width: 900px; }
     .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.78rem; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 20px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
     .hero-name { font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 10vw, 9.5rem); line-height: 0.9; letter-spacing: 4px; color: #fff; opacity: 0; animation: fadeUp 0.9s 0.4s forwards; }
     .hero-name span { color: var(--cyan); }
-    .hero-title { font-size: 1.1rem; color: var(--muted); font-weight: 300; margin-top: 28px; max-width: 500px; line-height: 1.75; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
+    .hero-title { font-size: 1.1rem; color: var(--muted); font-weight: 300; margin-top: 28px; max-width: 540px; line-height: 1.75; opacity: 0; animation: fadeUp 0.9s 0.6s forwards; }
     .hero-title strong { color: var(--text); font-weight: 500; }
     .hero-actions { margin-top: 44px; display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s 0.8s forwards; }
     .btn-primary { padding: 13px 32px; background: var(--cyan); color: #07070f; font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; font-weight: 500; clip-path: polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px)); transition: all 0.3s; }
@@ -44,23 +44,10 @@
     .btn-outline { padding: 13px 32px; background: transparent; color: var(--cyan); border: 1px solid var(--cyan); font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
     .btn-outline:hover { background: rgba(0,229,255,0.1); transform: translateY(-2px); }
 
-    .hero-stats { position: absolute; right: 60px; bottom: 80px; display: flex; flex-direction: column; gap: 24px; text-align: right; opacity: 0; animation: fadeRight 0.9s 1s forwards; }
-    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--cyan); line-height: 1; }
-    .stat-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; }
-
     .scroll-cue { position: absolute; bottom: 40px; left: 60px; display: flex; align-items: center; gap: 12px; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 2px; color: var(--muted); text-transform: uppercase; opacity: 0; animation: fadeUp 1s 1.2s forwards; }
     .scroll-line { width: 60px; height: 1px; background: linear-gradient(to right, var(--cyan), transparent); animation: pulse-line 2s infinite; }
 
-    #about { padding: 120px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .about-img-wrap { width: 380px; height: 400px; position: relative; }
-    .about-img-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--bg3), var(--bg2)); border: 1px solid var(--border); clip-path: polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px)); }
-    .about-img-accent { position: absolute; top: -16px; right: -16px; width: 140px; height: 140px; border-top: 2px solid var(--cyan); border-right: 2px solid var(--cyan); opacity: 0.5; }
-    .about-img-accent2 { position: absolute; bottom: -16px; left: -16px; width: 90px; height: 90px; border-bottom: 2px solid var(--purple); border-left: 2px solid var(--purple); opacity: 0.4; }
-    .about-initials { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 6rem; letter-spacing: 4px; color: rgba(0,229,255,0.07); user-select: none; }
-    .about-badge { position: absolute; bottom: 24px; right: -24px; background: var(--bg3); border: 1px solid var(--border); padding: 16px 20px; }
-    .badge-num { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--gold); line-height: 1; }
-    .badge-text { font-size: 0.68rem; color: var(--muted); font-family: 'DM Mono', monospace; letter-spacing: 1px; }
-
+    #about { padding: 120px 60px; max-width: 820px; margin: 0 auto; }
     .section-tag { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 16px; }
     .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); line-height: 1; letter-spacing: 2px; margin-bottom: 24px; }
     .section-title span { color: var(--cyan); }
@@ -118,66 +105,68 @@
 
     .glow-line { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(to right, transparent, var(--cyan), transparent); opacity: 0.2; }
 
-    footer { padding: 36px 60px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+    footer { padding: 36px 60px; border-top: 1px solid var(--border); display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
     .footer-text { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); letter-spacing: 1px; }
-    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: 3px; color: rgba(0,229,255,0.25); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
     @keyframes pulse-line { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 
     .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 900px) {
-      nav { padding: 18px 24px; } .nav-links { gap: 20px; }
-      #hero { padding: 0 24px; } .hero-stats { right: 24px; bottom: 60px; }
-      #about { padding: 80px 24px; grid-template-columns: 1fr; }
-      .about-img-wrap { width: 100%; height: 260px; }
+      nav { padding: 10px 24px; } .nav-right { gap: 18px; } .nav-left { gap: 10px; } .nav-avatar { width: 64px; height: 64px; }
+      #hero { padding: 120px 24px 60px; }
+      #hero { padding: 0 24px; }
+      #about { padding: 80px 24px; }
       #skills, #projects, #contact { padding: 80px 24px; }
-      footer { padding: 28px 24px; flex-direction: column; gap: 10px; text-align: center; }
+      footer { padding: 28px 24px; text-align: center; }
       .scroll-cue { left: 24px; }
     }
-    @media (max-width: 600px) { .nav-links { display: none; } .hero-stats { display: none; } }
+    @media (max-width: 600px) { .nav-links { display: none; } }
   </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
 
 <nav>
-  <a href="#hero" class="nav-logo">Arslan Fareed</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-left">
+    <img src="img.png" alt="Muhammad Arslan Fareed" class="nav-avatar" />
+    <a href="#hero" class="nav-logo">Arslan Fareed</a>
+  </div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    
+  </div>
 </nav>
+
 
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-tag">// Software Engineer · UET Taxila · Batch 24-SE</div>
+    <div class="hero-tag">Software Engineer · UET Taxila · Batch 24-SE</div>
     <h1 class="hero-name">MUHAMMAD<br>ARSLAN <span>FAREED</span></h1>
-    <p class="hero-title">SE student at UET Taxila. I build <strong>machine learning models, Python pipelines, and data-driven systems.</strong> Focused on writing code that actually works, not just code that compiles.</p>
+    <p class="hero-title">SE student at UET Taxila focused on <strong>AI, machine learning, and Python.</strong> I build and train models end to end, with C++ and Java as a secondary toolset from coursework.</p>
     <div class="hero-actions">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-outline">Get In Touch</a>
     </div>
   </div>
- 
   <div class="scroll-cue"><div class="scroll-line"></div><span>Scroll</span></div>
 </section>
 
 <section id="about">
   <div class="reveal">
-    <div class="section-tag">// about me</div>
+    <div class="section-tag">About Me</div>
     <h2 class="section-title">WHO I <span>AM</span></h2>
     <div class="section-divider sd-left"></div>
-    <p class="about-text">Software Engineering student at <strong>UET Taxila</strong>, 4th semester. My focus is <strong>machine learning, Python, and data systems</strong> - training models, building pipelines, and working with real datasets end to end.</p>
-    <p class="about-text">I also work with SQL database design, and have a background in Java and C++ from coursework. But AI/ML is where most of my time goes right now.</p>
+    <p class="about-text">Software Engineering student at <strong>UET Taxila</strong>. My focus is <strong>AI, machine learning, and Python</strong> - training models, building data pipelines, and working with real datasets end to end.</p>
+    <p class="about-text">I also work with SQL database design, and have a background in Java and C++ from coursework. AI/ML is where most of my time and interest goes.</p>
     <div class="highlight-chips">
       <span class="chip">Python</span>
       <span class="chip">Machine Learning</span>
@@ -192,7 +181,7 @@
 <section id="skills">
   <div class="glow-line" style="top:0;"></div>
   <div class="skills-header reveal">
-    <div class="section-tag">// tech stack</div>
+    <div class="section-tag">Tech Stack</div>
     <h2 class="section-title">SKILLS &amp; <span>TOOLS</span></h2>
     <div class="section-divider sd-center"></div>
   </div>
@@ -233,7 +222,7 @@
 
 <section id="projects">
   <div class="projects-header reveal">
-    <div class="section-tag">// what i've built</div>
+    <div class="section-tag">What I've Built</div>
     <h2 class="section-title">PROJECTS</h2>
     <div class="section-divider sd-center"></div>
   </div>
@@ -241,42 +230,90 @@
 
     <div class="project-card reveal">
       <div class="project-num">01</div>
-      <div class="project-title">Handwritten Digit Recognition</div>
-      <p class="project-desc">CNN trained on MNIST and extended with EMNIST for full alphanumeric recognition. Full preprocessing, training, and evaluation pipeline in Python.</p>
-      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Deep Learning</span><span class="ptag">Image Classification</span></div>
-      <a href="https://github.com/rslaanfareed/HandwrittenDigitRecognition" target="_blank" class="project-link">View on GitHub →</a>
+      <div class="project-title">Health Prediction ML</div>
+      <p class="project-desc">Machine learning model that predicts health risk outcomes from patient data. Covers data cleaning, feature engineering, and model evaluation in a Jupyter workflow.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Machine Learning</span><span class="ptag">Jupyter Notebook</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
     </div>
 
     <div class="project-card reveal">
       <div class="project-num">02</div>
-      <div class="project-title">Skill Exchange Platform — DB</div>
-      <p class="project-desc">Relational database schema for a skill exchange platform. Designed in Oracle SQL with full EER modeling, constraints, and queries.</p>
-      <div class="project-tags"><span class="ptag">Oracle SQL</span><span class="ptag">Database Design</span><span class="ptag">EER Modeling</span></div>
-      <a href="https://github.com/rslaanfareed/Skill_Exchange_Platform" target="_blank" class="project-link">View on GitHub →</a>
+      <div class="project-title">Credit-Wise</div>
+      <p class="project-desc">Credit risk and creditworthiness analysis project applying classification techniques to financial data.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Machine Learning</span><span class="ptag">Jupyter Notebook</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
     </div>
 
     <div class="project-card reveal">
       <div class="project-num">03</div>
-      <div class="project-title">Grocery Store Manager</div>
-      <p class="project-desc">Console-based C++ application for managing store inventory, sales, and records. Built with structured OOP and file handling.</p>
-      <div class="project-tags"><span class="ptag">C++</span><span class="ptag">OOP</span><span class="ptag">File Handling</span></div>
-      <a href="https://github.com/rslaanfareed/Grocery_store_manager" target="_blank" class="project-link">View on GitHub →</a>
+      <div class="project-title">Titanic Survival ML</div>
+      <p class="project-desc">Classic classification problem predicting passenger survival. Full pipeline from EDA and feature engineering to model comparison.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Machine Learning</span><span class="ptag">Jupyter Notebook</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
     </div>
 
     <div class="project-card reveal">
       <div class="project-num">04</div>
-      <div class="project-title">JavaFX Grocery Store Manager</div>
-      <p class="project-desc">Full GUI desktop app in JavaFX — upgraded version of the C++ original. CSS-styled interface with complete inventory management.</p>
-      <div class="project-tags"><span class="ptag">Java</span><span class="ptag">JavaFX</span><span class="ptag">CSS Styling</span></div>
-      <a href="https://github.com/rslaanfareed/JavaFx_GroceryStoreManager" target="_blank" class="project-link">View on GitHub →</a>
+      <div class="project-title">Digit Recognizer</div>
+      <p class="project-desc">Model that classifies handwritten digits, with a full preprocessing, training, and evaluation pipeline in Python.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Machine Learning</span><span class="ptag">Image Classification</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
     </div>
 
     <div class="project-card reveal">
       <div class="project-num">05</div>
+      <div class="project-title">Skill Exchange Platform</div>
+      <p class="project-desc">Database Systems project pairing a Python GUI with an Oracle SQL schema, full EER modeling, constraints, and queries.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Oracle SQL</span><span class="ptag">Database Design</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">06</div>
+      <div class="project-title">Employee Management System</div>
+      <p class="project-desc">Full-stack employee management application built on Python with an Oracle database backend.</p>
+      <div class="project-tags"><span class="ptag">Python</span><span class="ptag">Oracle SQL</span><span class="ptag">Database Design</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">07</div>
+      <div class="project-title">Student Task Manager</div>
+      <p class="project-desc">Task management application for tracking student assignments and deadlines.</p>
+      <div class="project-tags"><span class="ptag">Python</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">08</div>
+      <div class="project-title">Ride Booking System</div>
+      <p class="project-desc">Software Design and Architecture group project - a ride booking application built in Java.</p>
+      <div class="project-tags"><span class="ptag">Java</span><span class="ptag">OOP</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">09</div>
+      <div class="project-title">JavaFX Grocery Store Manager</div>
+      <p class="project-desc">GUI desktop application in JavaFX for managing store inventory, sales, and records.</p>
+      <div class="project-tags"><span class="ptag">Java</span><span class="ptag">JavaFX</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">10</div>
       <div class="project-title">School Management System</div>
-      <p class="project-desc">Console-based Java app managing students, teachers, and courses. Demonstrates core OOP concepts across a real-world domain.</p>
-      <div class="project-tags"><span class="ptag">Java</span><span class="ptag">OOP</span><span class="ptag">Console App</span></div>
-      <a href="https://github.com/rslaanfareed/School_Management_System_Console_Based" target="_blank" class="project-link">View on GitHub →</a>
+      <p class="project-desc">Console-based application managing students, teachers, and courses.</p>
+      <div class="project-tags"><span class="ptag">C++</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-num">11</div>
+      <div class="project-title">Grocery Store Manager</div>
+      <p class="project-desc">Console-based C++ application for managing store inventory, sales, and records.</p>
+      <div class="project-tags"><span class="ptag">C++</span></div>
+      <a href="https://github.com/rslaanfareed?tab=repositories" target="_blank" class="project-link">View on GitHub →</a>
     </div>
 
   </div>
@@ -285,11 +322,10 @@
 <section id="contact">
   <div class="glow-line" style="top:0;"></div>
   <div class="contact-inner reveal">
-    <div class="section-tag">// get in touch</div>
+    <div class="section-tag">Get In Touch</div>
     <h2 class="contact-big">LET'S<br><span>TALK</span></h2>
     <p class="contact-sub">Open to internships, collaborations, and interesting projects.</p>
     <div class="contact-links">
-     
       <a href="https://github.com/rslaanfareed" target="_blank" class="contact-link">
         <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.38-1.34-1.75-1.34-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12.004 12.004 0 0 0 24 12C24 5.37 18.63 0 12 0z"/></svg>
         GitHub
@@ -298,15 +334,12 @@
         <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         LinkedIn
       </a>
-     
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-text">© 2025 Muhammad Arslan Fareed · UET Taxila</span>
-  <span class="footer-logo">MAF</span>
-  <span class="footer-text">Built from scratch</span>
+  <span class="footer-text">© 2025 Muhammad Arslan Fareed · UET Taxila · Built from scratch</span>
 </footer>
 
 <script>
@@ -345,23 +378,6 @@
     requestAnimationFrame(drawCanvas);
   }
   drawCanvas();
-
-  const cursor = document.getElementById('cursor');
-  const cursorRing = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-  function animateCursor() {
-    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
-    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
-    cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
-    requestAnimationFrame(animateCursor);
-  }
-  animateCursor();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; cursorRing.style.transform = 'translate(-50%,-50%) scale(1.4)'; cursorRing.style.opacity = '0.8'; });
-    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursorRing.style.transform = 'translate(-50%,-50%) scale(1)'; cursorRing.style.opacity = '0.5'; });
-  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); } });
